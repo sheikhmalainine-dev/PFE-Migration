@@ -1,0 +1,89 @@
+# ===========================================================================
+# PFE — CNASS Migration · .gitignore
+# Objectif : ne JAMAIS commiter de secret, d'état d'infra, ni de gros binaire.
+# Règle d'anonymisation (voir INSTRUCTIONS §3) : IPs, kubeconfigs, données
+# CNASS restent dans le miroir privé — jamais dans le dépôt public.
+# ===========================================================================
+
+# --- Terraform (infra/terraform/) ------------------------------------------
+# tfstate contient des secrets en CLAIR — ne jamais versionner.
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# --- Kubernetes / Talos / K3s (infra/) -------------------------------------
+kubeconfig
+*.kubeconfig
+talosconfig
+*.talosconfig
+*-secret.yaml
+*-secrets.yaml
+secrets.yaml
+controlplane.yaml
+worker.yaml
+
+# --- Secrets génériques -----------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.kdbx
+
+# --- Python / Flask (apps/flask-api/) --------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# --- Résultats lourds (results/) -------------------------------------------
+# Les CSV/exports volumineux et bruts ne sont pas versionnés tels quels.
+# Garder uniquement les figures retenues pour le rapport (rapport/figures/).
+# Décommenter si results/ devient trop lourd pour Git :
+# results/**/*.csv
+# results/**/*.json.gz
+*.tmp
+*.bak
+
+# --- k6 (lab/scenario-3-burst/) --------------------------------------------
+k6-results-*.json
+summary-*.json
+
+# --- Documents générés (rapport/) ------------------------------------------
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+rapport/**/*.pdf
+
+# --- OS / éditeurs ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+*.code-workspace

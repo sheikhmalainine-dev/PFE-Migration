@@ -237,4 +237,6 @@ Ce travail est soumis comme mémoire de fin d'études du Master, en accomplissem
 
 ## Licence
 
-Ce dépôt est publié à des fins académiques et de démonstration. Réutilisation avec attribution.
+**Tous droits réservés** — © 2025–2026 Sheikh. Voir [`LICENSE`](LICENSE).
+
+Ce dépôt est publié à des fins académiques et d'évaluation (jury, encadrant, maître de stage). Toute réutilisation, copie ou modification nécessite l'accord écrit préalable de l'auteur. Les données internes à la CNASS restent confidentielles et hors de ce dépôt public.
