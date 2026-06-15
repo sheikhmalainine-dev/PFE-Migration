@@ -1,0 +1,40 @@
+services:
+
+  stress-api:
+    build: .
+    ports:
+      - "5000:8080"
+    mem_limit: 256m
+    memswap_limit: 256m
+    #oom_kill_disable: false
+    cpus: "0.50"
+    restart: yes
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports:
+      - "5001:8080"
+    mem_limit: 256m
+    memswap_limit: 256m
+    cpus: "0.25"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "5002:9100"
+    mem_limit: 64m
+    memswap_limit: 64m
+    cpus: "0.10"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/rootfs"
